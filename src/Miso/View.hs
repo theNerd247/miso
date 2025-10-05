@@ -6,7 +6,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module V (
+module Miso.View (
     V,
     InputType (..),
     toView,
@@ -176,15 +176,20 @@ data InputType
     = Text
     | TextArea
     | File
+    | Submit
 
-input :: V p m a -> V p m a
-input = wrapAttr H.input_
+input :: InputType -> V p m a -> V p m a
+input t x = wrapAttr H.input_ $ type_ t <> x
+
+submit :: V p m a -> V p m a
+submit = input Submit
 
 type_ :: InputType -> V p m a
 type_ t = liftAttr $ P.type_ $ case t of
     Text -> "text"
     TextArea -> "textarea"
     File -> "file"
+    Submit -> "submit"
 
 onInput :: V p m MisoString
 onInput = liftAttr $ E.onInput id
@@ -194,9 +199,6 @@ name = liftAttr . P.name_
 
 label :: V p m a -> V p m a
 label = wrapV H.label_
-
-submit :: V p m a
-submit = liftV $ H.input_ [P.type_ "submit"]
 
 table :: V p m a -> V p m a
 table = wrapV H.table_
