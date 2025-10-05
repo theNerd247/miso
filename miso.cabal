@@ -157,6 +157,7 @@ library
     Miso.Util
     Miso.Util.Lexer
     Miso.Util.Parser
+    Miso.View
     Miso.WebSocket
 
   if flag (template-haskell) && !impl(ghcjs)
@@ -171,6 +172,7 @@ library
   hs-source-dirs:
     src
   build-depends:
+    profunctors ^>=5.6.2,
     aeson         < 2.3,
     base          < 5,
     bytestring    < 0.13,
