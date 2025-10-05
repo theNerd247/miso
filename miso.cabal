@@ -115,6 +115,7 @@ library
     Miso.Canvas
     Miso.Concurrent
     Miso.Effect
+    Miso.Eff
     Miso.Event
     Miso.Event.Decoder
     Miso.Event.Types
@@ -178,4 +179,5 @@ library
     jsaddle       < 0.10,
     mtl           < 2.4,
     text          < 2.2,
-    stm >= 2.4 && < 2.6
+    stm >= 2.4 && < 2.6,
+    kan-extensions
