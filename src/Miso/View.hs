@@ -184,6 +184,12 @@ input t x = wrapAttr H.input_ $ type_ t <> x
 submit :: V p m a -> V p m a
 submit = input Submit
 
+textInput :: V p m a -> V p m a
+textInput = input Text
+
+textAreaInput :: V p m a -> V p m a
+textAreaInput = input TextArea
+
 type_ :: InputType -> V p m a
 type_ t = liftAttr $ P.type_ $ case t of
     Text -> "text"
